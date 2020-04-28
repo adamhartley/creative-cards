@@ -1,0 +1,21 @@
+<template>
+  <div>
+    <h1 class="text-center">Created Cards</h1>
+    <ul class="nav justify-content-center">
+      <li class="nav-item"><a class="nav-link">Front</a></li>
+      <li class="nav-item"><a class="nav-link">Inside Left</a></li>
+      <li class="nav-item"><a class="nav-link">Inside Right</a></li>
+      <li class="nav-item"><a class="nav-link">Inside Back</a></li>
+    </ul>
+  </div>
+</template>
+
+<script>
+
+</script>
+
+<style>
+  h1 {
+    margin-top: 10px;
+  }
+</style>
