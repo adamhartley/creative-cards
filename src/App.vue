@@ -7,7 +7,7 @@
           <component :is="currentPage"></component> <!-- component listens for the $emit event and updates the currentPage data -->
         </keep-alive>
         <cc-footer>
-          <p class="text-center">&copy; Creative Cards</p>
+          <p class="text-center" slot="app-name">&copy; {{appName}}</p>
           <nav>
             <ul class="nav justify-content-center">
               <li class="nav-item"><a class="nav-link">Home</a></li>
@@ -32,7 +32,8 @@
   export default {
     data: function () {
       return {
-        currentPage: 'cardFront' // displays the front of the card by default
+        currentPage: 'cardFront', // displays the front of the card by default
+        appName: 'Creative Cards'
       }
     },
     components: {
