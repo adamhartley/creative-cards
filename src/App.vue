@@ -3,7 +3,9 @@
     <div class="row">
       <div class="col-sm-12">
         <nav-header @pageWasChanged="currentPage = $event"></nav-header>
-        <component :is="currentPage"></component> <!-- component listens for the $emit event and updates the currentPage data -->
+        <keep-alive> <!-- prevents data loss when changing components -->
+          <component :is="currentPage"></component> <!-- component listens for the $emit event and updates the currentPage data -->
+        </keep-alive>
       </div>
     </div>
   </div>
