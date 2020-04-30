@@ -1,24 +1,7 @@
-# creative-cards
+# Creative Cards Vue.js App
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
+The Creative Cards app allows a user to upload an image and add text to design a card. The application utilizes Google Firebase to upload
+and store the images.
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
