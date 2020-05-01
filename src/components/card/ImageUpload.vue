@@ -8,7 +8,7 @@
       <progress value="0" max="100" id="progressBar"></progress>
       <br>
       <img id="image">
-      <button type="button" id="setImageButton">Set Image</button>
+      <button type="button" id="setImageButton" style="display:none" @click="setImage">Set Image</button>
     </div>
   </div>
 </template>
@@ -24,6 +24,10 @@
     },
     methods: {
       uploadFile: function (event) {
+
+        // if more than one image is uploaded, reset the button to hidden
+        document.getElementById('setImageButton').style.display = 'none';
+
         this.file = event.target.files[0];
         // store the image inside of Firebase
         let storageRef = Firebase.storage().ref('user_uploads/' + this.file.name);
@@ -39,10 +43,18 @@
         // progress bar
         upload.on('state_changed', function (snapshot) {
           // calculate percentage of progress for file upload, and assign to progressBar
-          document.getElementById('progressBar').value = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          document.getElementById('progressBar').value = progress;
+
+          // only display the set image button AFTER the image has finished uploading
+          if (progress === 100) {
+            document.getElementById('setImageButton').style.display = 'inline-block';
+          }
         })
 
-        // send file name to parent component, CardFront.vue
+      },
+      setImage: function () {
+        // send file name to parent component, CardFront.vue only after the image has finished uploading, and the button is clicked
         this.$emit('displayImageChanged', this.file.name)
       }
     }

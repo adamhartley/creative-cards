@@ -1,10 +1,21 @@
 <template>
-  <div class="img-container" :style="styleObject">
-    <img id="outputImage">{{displayImage}}
+  <div class="img-container"
+       :style="styleObject"
+       @mouseover="showOptions = true"
+       @mouseleave="showOptions = false">
+    <button type="button"
+            class="btn btn-outline-danger btn-sm"
+            v-show="showOptions"
+            @click="clearImageProp">
+      Remove Image
+    </button>
+    <img id="outputImage">
   </div>
 </template>
 
 <script>
+  import Firebase from 'firebase'
+
   export default {
     props: {
       displayImage: {
@@ -13,6 +24,23 @@
       containerHeight: {
         type: Number,
         default: 200
+      },
+      clearImageProp: Function
+    },
+    data: function () {
+      return {
+        showOptions: false
+      }
+    },
+    watch: {
+      displayImage: function () {
+        // download the image inside of Firebase
+        let storageRef = Firebase.storage().ref('user_uploads/' + this.displayImage);
+        storageRef.getDownloadURL().then(function (url) {
+          let img = document.getElementById('outputImage');
+          img.src = url;
+          setDraggable();
+        });
       }
     },
     computed: {
@@ -24,6 +52,14 @@
       }
     }
   }
+
+  /*
+   * Utilizing jQuery to add draggable functionality to image
+   */
+  function setDraggable() {
+    // eslint-disable-next-line no-undef
+    $('#outputImage').draggable();
+  }
 </script>
 
 <style>
@@ -31,5 +67,14 @@
     border: 1px dotted grey;
     overflow: hidden;
     margin: 5px 0;
+  }
+
+  button {
+    position: absolute;
+    z-index: 1; /* allow button to sit ontop of image */
+  }
+
+  img {
+    width: 130%;
   }
 </style>
