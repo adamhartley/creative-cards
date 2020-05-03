@@ -1,43 +1,45 @@
 <template>
   <div @mouseover="showOptions = true"
        @mouseleave="showOptions = false">
-    <form class="small" v-show="showOptions">
-      <!-- Font size selection  -->
-      <label for="selectBox">&nbsp;Font Size:</label>
-      <select class="input-small" id="selectBox" v-model="setFontSize">
-        <option value="42">42px</option>
-        <option value="48">48px</option>
-        <option value="56">56px</option>
-        <option value="64">64px</option>
-      </select>
-      <!--  Text alignment selection   -->
-      <div class="form-check form-check-inline">
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" value="left" v-model="setTextAlign"> Left
-        </label>
-      </div>
-      <div class="form-check form-check-inline">
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" value="center" v-model="setTextAlign"> Center
-        </label>
-      </div>
-      <div class="form-check form-check-inline">
-        <label class="form-check-label">
-          <input type="radio" class="form-check-input" value="right" v-model="setTextAlign"> Right
-        </label>
-      </div>
-      <!-- Text styling selection  -->
-      <div class="form-check form-check-inline">
-        <label class="form-check-label">
-          <input class="form-check-input" type="checkbox" v-model="setBold"> Bold
-        </label>
-      </div>
-      <div class="form-check form-check-inline">
-        <label class="form-check-label">
-          <input class="form-check-input" type="checkbox" v-model="setItalic"> Italic
-        </label>
-      </div>
-    </form>
+    <transition name="fade">
+      <form class="small" v-show="showOptions">
+        <!-- Font size selection  -->
+        <label for="selectBox">&nbsp;Font Size:</label>
+        <select class="input-small" id="selectBox" v-model="setFontSize">
+          <option value="42">42px</option>
+          <option value="48">48px</option>
+          <option value="56">56px</option>
+          <option value="64">64px</option>
+        </select>
+        <!--  Text alignment selection   -->
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="left" v-model="setTextAlign"> Left
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="center" v-model="setTextAlign"> Center
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="right" v-model="setTextAlign"> Right
+          </label>
+        </div>
+        <!-- Text styling selection  -->
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" v-model="setBold"> Bold
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" v-model="setItalic"> Italic
+          </label>
+        </div>
+      </form>
+    </transition>
     <p :style="styleObject"
        :class="{bold: setBold, italic: setItalic}">
       {{displayText}}

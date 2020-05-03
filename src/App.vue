@@ -22,6 +22,7 @@
 </template>
 
 <script>
+  // eslint-disable-next-line no-unused-vars
   import FirebaseConfig from './firebaseConfig'
   import Header from './components/Header.vue'
   import CardFront from './components/card/CardFront.vue'
@@ -57,5 +58,15 @@
 
   a {
     cursor: pointer;
+  }
+
+  /* Vue transaction classes adding fade effect
+ */
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
   }
 </style>

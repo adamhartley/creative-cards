@@ -3,12 +3,14 @@
        :style="styleObject"
        @mouseover="showOptions = true"
        @mouseleave="showOptions = false">
-    <button type="button"
-            class="btn btn-outline-danger btn-sm"
-            v-show="showOptions"
-            @click="clearImageProp">
-      Remove Image
-    </button>
+    <transition name="fade">
+      <button type="button"
+              class="btn btn-outline-danger btn-sm"
+              v-show="showOptions"
+              @click="clearImageProp">
+        Remove Image
+      </button>
+    </transition>
     <img id="outputImage">
   </div>
 </template>
