@@ -3,9 +3,12 @@
     <div class="row">
       <div class="col-sm-12">
         <nav-header @pageWasChanged="currentPage = $event"></nav-header>
-        <keep-alive> <!-- prevents data loss when changing components -->
-          <component :is="currentPage"></component> <!-- component listens for the $emit event and updates the currentPage data -->
-        </keep-alive>
+        <transition name="fade" mode="out-in">
+          <!-- mode out-in removes the component BEFORE loading new component, prevents things from jumping around during transition -->
+          <keep-alive> <!-- prevents data loss when changing components -->
+            <component :is="currentPage"></component> <!-- component listens for the $emit event and updates the currentPage data -->
+          </keep-alive>
+        </transition>
         <cc-footer>
           <p class="text-center" slot="app-name">&copy; {{appName}}</p>
           <nav>
