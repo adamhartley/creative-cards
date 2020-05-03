@@ -23,21 +23,16 @@
   import ImageUpload from "./ImageUpload";
   import ImageOutput from "./ImageOutput";
   import SectionCompleted from "./SectionCompleted";
+  import {clearImageMixin} from "../../mixins/clearImageMixin";
 
   export default {
+    mixins: [clearImageMixin],
     data: function () {
       return {
         textBoxValue1: '',
         textBoxValue2: '',
         textBoxValue3: '',
         imageName: ''
-      }
-    },
-    methods: {
-      clearImage: function () {
-        if (this.imageName !== '') {
-          this.imageName = 'sunset.jpeg' // set default image
-        }
       }
     },
     components: {

@@ -14,18 +14,13 @@
   import ImageUpload from "./ImageUpload";
   import ImageOutput from "./ImageOutput";
   import SectionCompleted from "./SectionCompleted";
+  import {clearImageMixin} from "../../mixins/clearImageMixin";
 
   export default {
+    mixins: [clearImageMixin],
     data: function () {
       return {
         imageName: ''
-      }
-    },
-    methods: {
-      clearImage: function () {
-        if (this.imageName !== '') {
-          this.imageName = 'sunset.jpeg' // set default image
-        }
       }
     },
     components: {
