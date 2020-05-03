@@ -3,7 +3,20 @@
     <div class="row">
       <div class="col-sm-12">
         <nav-header @pageWasChanged="currentPage = $event"></nav-header>
-        <transition name="fade" mode="out-in">
+        <div id="instructions" class="text-center italic">
+          <div class="row">
+            <div class="col-sm-6">
+              <p><em>&larr; Make changes in the edit card area below:</em></p>
+            </div>
+            <div class="col-sm-6">
+              <p><em>And they will show on the card &rarr;</em></p>
+            </div>
+          </div>
+        </div>
+        <transition
+          name="fade"
+          mode="out-in"
+          @enter="enter">
           <!-- mode out-in removes the component BEFORE loading new component, prevents things from jumping around during transition -->
           <keep-alive> <!-- prevents data loss when changing components -->
             <component :is="currentPage"></component> <!-- component listens for the $emit event and updates the currentPage data -->
@@ -39,6 +52,16 @@
       return {
         currentPage: 'cardFront', // displays the front of the card by default
         appName: 'Creative Cards'
+      }
+    },
+    methods: {
+      /*
+       * The instructions are shown to the user the when they first view the site on the CardFront.vue.
+       * After that, the instructions are hidden.
+       */
+      enter: function (el, done) {
+        document.getElementById('instructions').style.display = "none";
+        done(); // tells Vue when the CSS transitions have completed
       }
     },
     components: {
