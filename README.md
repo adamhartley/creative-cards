@@ -19,8 +19,9 @@ The app is composed of four basic Vue files:
 The progress bar makes use of an EventBus Vue instance, defined in the main.js file, which allows the application to share data with other
 components which are not directly related.
 
-Transitions added to text editing options, and  remove image buttons. Global CSS stylings are located in App.vue and utilize several of the
-Vue transition classes, including: v-enter, v-enter-active, v-leave-active, and v-leave-to.
+Transitions added to text editing options, and remove image button. Global CSS stylings are located in App.vue and utilize several of the
+Vue transition classes, including: v-enter, v-enter-active, v-leave-active, and v-leave-to. CSS transitions were used in combination with the
+Vue transition classes on the remove image button.
 
 
 ### Customize configuration
