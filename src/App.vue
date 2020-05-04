@@ -59,9 +59,8 @@
        * The instructions are shown to the user the when they first view the site on the CardFront.vue.
        * After that, the instructions are hidden.
        */
-      enter: function (el, done) {
+      enter: function (el) {
         document.getElementById('instructions').style.display = "none";
-        done(); // tells Vue when the CSS transitions have completed
       }
     },
     components: {
@@ -94,5 +93,32 @@
 
   .fade-enter-active, .fade-leave-active {
     transition: opacity .5s;
+  }
+
+  /* CSS animations for remove image button */
+  .custom-enter-active {
+    animation: scale-in 0.5s;
+  }
+
+  .custom-leave-active {
+    animation: scale-out 0.5s;
+  }
+
+  @keyframes scale-in {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes scale-out {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
   }
 </style>
